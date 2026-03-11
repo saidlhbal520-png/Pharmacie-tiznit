@@ -1,96 +1,44 @@
-const pharmacies=[
+// رابط Google Sheet (يجب أن ينتهي بـ output=csv)
+const SHEET_URL = "ضع_رابط_CSV_الخاص_بك_هنا";
 
-{name:"صيدلية الفتح",address:"Lot El Fath 01 أمام مسجد الفتح",phone:"0528863442"},
-{name:"صيدلية أبوزيد",address:"طريق أكلو قرب مستشفى الحسن الأول",phone:"0528601500"},
-{name:"صيدلية السوق",address:"طريق تفراوت الحي الصناعي",phone:"0528860200"},
-{name:"صيدلية إراك",address:"شارع 30 تجزئة إراك",phone:"0528600346"},
-{name:"صيدلية طريق كلميم",address:"شارع بئر أنزاران",phone:"0528866778"},
-{name:"صيدلية الأمل",address:"شارع 30 أفراك",phone:"0528861729"},
-{name:"صيدلية أوروبا",address:"ودادية الموظفين أمام الحديقة",phone:"0528863545"},
-{name:"صيدلية الشريف الإدريسي",address:"خارج باب أكلو",phone:"0528602525"},
-{name:"صيدلية أفراك",address:"شارع دريس الحارتي",phone:"0528600788"},
-{name:"صيدلية بن عمر",address:"أفراك مقابل BMCE",phone:"0528600814"},
-{name:"صيدلية الصحة",address:"حي المسيرة",phone:"0528602526"},
-{name:"صيدلية إكرام",address:"عمارة نصر طريق أكلو",phone:"0707150651"},
-{name:"صيدلية الشعب",address:"قرب المحكمة الابتدائية",phone:"0528601755"},
-{name:"صيدلية الجنوب",address:"قرب ودادية الموظفين",phone:"0528601400"},
-{name:"صيدلية الجديدة",address:"شارع سيدي عبد الرحمان",phone:"0528862742"},
-{name:"صيدلية نصيري",address:"شارع محمد الخامس",phone:"0528600721"},
-{name:"صيدلية بلحاج",address:"سوق سي بلعيد",phone:"0528601782"},
-{name:"صيدلية التكوين",address:"طريق تفراوت قرب التكوين المهني",phone:"0525255060"},
-{name:"صيدلية حي النخيل",address:"الشارع الرئيسي النخيل",phone:"0528861949"},
-{name:"صيدلية المحطة",address:"طريق تفراوت قرب سوق الخميس",phone:"0667134940"},
-{name:"صيدلية إيليغ",address:"السعيدية قرب مدرسة يعقوبي",phone:"0528860289"},
-{name:"صيدلية ابن سينا",address:"طريق كلميم أمام محطة شيل",phone:"0528860285"},
-{name:"صيدلية الكبرى",address:"شارع محمد الخامس",phone:"0528600814"},
-{name:"صيدلية فوق الواد",address:"فوق الواد اتجاه تاركا",phone:"0528601061"},
-{name:"صيدلية المختار السوسي",address:"أمام مستشفى حمان الفتوكي",phone:"0528863565"},
-{name:"صيدلية الشفاء",address:"الطريق القديم لأكلو",phone:"0707735712"},
-{name:"صيدلية رحمة الله",address:"تجزئة نهضة 2",phone:"0528866233"},
-{name:"الصيدلية الإقليمية",address:"طريق أكادير",phone:"0528600775"},
-{name:"صيدلية المستقبل",address:"العين الزرقة قرب خزان المياه",phone:"0528602111"},
-{name:"صيدلية المستشفى",address:"طريق أكلو أمام المستشفى",phone:"0528863285"},
-{name:"صيدلية الأطلس",address:"طريق إفني",phone:"0528601534"},
-{name:"صيدلية سهل سوس",address:"ساحة المشوار",phone:"0528861741"},
-{name:"صيدلية طريق إفني",address:"قرب محطة أفريقيا",phone:"0528601296"},
-{name:"الصيدلية المركزية",address:"ودادية الموظفين",phone:"0528861731"},
-{name:"صيدلية المرس",address:"شارع المرس أمام المركز الصحي",phone:"0528860728"}
+async function updatePharmacy() {
+    const nameElement = document.getElementById('pharmacy-name');
+    const dateElement = document.getElementById('current-date');
+    const btnCall = document.getElementById('btn-call');
+    const btnMap = document.getElementById('btn-map');
 
-]
+    // 1. عرض التاريخ الحالي
+    const today = new Date();
+    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    dateElement.innerText = today.toLocaleDateString('ar-MA', options);
 
-function showToday(){
+    // صيغة التاريخ للبحث في الجدول (YYYY-MM-DD)
+    const searchDate = today.toISOString().split('T')[0];
 
-let day=new Date().getDate()
-let p=pharmacies[day % pharmacies.length]
+    try {
+        // 2. جلب البيانات من جوجل شيت
+        const response = await fetch(SHEET_URL);
+        const csvData = await response.text();
+        
+        // 3. تحليل البيانات (تحويل CSV إلى مصفوفة)
+        const rows = csvData.split('\n').map(row => row.split(','));
+        
+        // البحث عن صف يحتوي على تاريخ اليوم (العمود الأول A)
+        const todayEntry = rows.find(row => row[0].trim() === searchDate);
 
-document.getElementById("todayPharmacy").innerHTML=
-`
-<b>${p.name}</b>
-<p>${p.address}</p>
-`
-
+        if (todayEntry) {
+            nameElement.innerText = todayEntry[1]; // اسم الصيدلية (العمود B)
+            btnCall.href = `tel:${todayEntry[2].trim()}`; // الهاتف (العمود C)
+            btnMap.href = todayEntry[3].trim(); // الرابط (العمود D)
+        } else {
+            nameElement.innerText = "لا توجد حراسة مسجلة اليوم";
+            nameElement.classList.add('text-red-400');
+        }
+    } catch (error) {
+        nameElement.innerText = "خطأ في الاتصال بالبيانات";
+        console.error("Error:", error);
+    }
 }
 
-function showList(data){
-
-let list=document.getElementById("pharmacyList")
-
-list.innerHTML=""
-
-data.forEach(p=>{
-
-list.innerHTML+=`
-
-<li>
-
-<div class="name">💊 ${p.name}</div>
-
-<div class="address">${p.address}</div>
-
-<div class="buttons">
-
-<button class="call" onclick="window.location.href='tel:${p.phone}'">📞 اتصال</button>
-
-<button class="map" onclick="window.open('https://maps.google.com/?q=${p.address} Tiznit')">🗺️ خريطة</button>
-
-</div>
-
-</li>
-
-`
-
-})
-
-}
-
-document.getElementById("search").addEventListener("input",function(){
-
-let value=this.value
-let filtered=pharmacies.filter(p=>p.name.includes(value))
-
-showList(filtered)
-
-})
-
-showToday()
-showList(pharmacies)
+// التشغيل عند تحميل الصفحة
+window.onload = updatePharmacy;
