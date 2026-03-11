@@ -1,250 +1,85 @@
 const pharmacies=[
 
-{
-name:"صيدلية الفتح",
-phone:"0528863442",
-address:"Lot El Fath 01"
-},
-
-{
-name:"صيدلية أبوزيد",
-phone:"0528601500",
-address:"Route Aglou"
-},
-
-{
-name:"صيدلية السوق",
-phone:"0528860200",
-address:"Route Tafraoute"
-},
-
-{
-name:"صيدلية إراك",
-phone:"0528600346",
-address:"Lotissement Erac"
-},
-
-{
-name:"صيدلية طريق كلميم",
-phone:"0528866778",
-address:"Boulevard Bir Anzarane"
-},
-
-{
-name:"صيدلية الأمل",
-phone:"0528861729",
-address:"Avenue 30 Afrag"
-},
-
-{
-name:"صيدلية أوروبا",
-phone:"0528863545",
-address:"Amicale des fonctionnaires"
-},
-
-{
-name:"صيدلية الشريف الإدريسي",
-phone:"0528602525",
-address:"Bab Aglou"
-},
-
-{
-name:"صيدلية أفراك",
-phone:"0528600788",
-address:"Boulevard Driss El Harti"
-},
-
-{
-name:"صيدلية بن عمر",
-phone:"0528600814",
-address:"Avenue 30 Afrag"
-},
-
-{
-name:"صيدلية الصحة",
-phone:"0528602526",
-address:"Hay Al Massira"
-},
-
-{
-name:"صيدلية إكرام",
-phone:"0707150651",
-address:"Route Aglou"
-},
-
-{
-name:"صيدلية الشعب",
-phone:"0528601755",
-address:"Rue Allal Ben Abdellah"
-},
-
-{
-name:"صيدلية الجنوب",
-phone:"0528601400",
-address:"Amicale des fonctionnaires"
-},
-
-{
-name:"صيدلية الجديدة",
-phone:"0528862742",
-address:"Avenue Sidi Abderrahmane"
-},
-
-{
-name:"صيدلية نصيري",
-phone:"0528600721",
-address:"Avenue Mohammed V"
-},
-
-{
-name:"صيدلية بلحاج",
-phone:"0528601782",
-address:"Souk Si Blaid"
-},
-
-{
-name:"صيدلية التكوين",
-phone:"0525255060",
-address:"Route Tafraoute"
-},
-
-{
-name:"صيدلية حي النخيل",
-phone:"0528861949",
-address:"Hay Nakhil"
-},
-
-{
-name:"صيدلية المحطة",
-phone:"0667134940",
-address:"Souk El Khmiss"
-},
-
-{
-name:"صيدلية إيليغ",
-phone:"0528860289",
-address:"Saaidia"
-},
-
-{
-name:"صيدلية ابن سينا",
-phone:"0528860285",
-address:"Route Guelmim"
-},
-
-{
-name:"صيدلية الكبرى",
-phone:"0528600814",
-address:"Avenue Mohammed V"
-},
-
-{
-name:"صيدلية فوق الواد",
-phone:"0528601061",
-address:"Agadir Assif"
-},
-
-{
-name:"صيدلية المختار السوسي",
-phone:"0528863565",
-address:"Près hôpital Houmane"
-},
-
-{
-name:"صيدلية رحمة الله",
-phone:"0528866233",
-address:"Lotissement Nahda"
-},
-
-{
-name:"الصيدلية الإقليمية",
-phone:"0528600775",
-address:"Route Agadir"
-},
-
-{
-name:"صيدلية المستقبل",
-phone:"0528602111",
-address:"Lotissement Al Oubour"
-},
-
-{
-name:"صيدلية المستشفى",
-phone:"0528863285",
-address:"Route Aglou"
-},
-
-{
-name:"صيدلية الأطلس",
-phone:"0528601534",
-address:"Route Ifni"
-},
-
-{
-name:"صيدلية سهل سوس",
-phone:"0528861741",
-address:"Place El Mechouar"
-},
-
-{
-name:"صيدلية طريق إفني",
-phone:"0528601296",
-address:"Route Ifni"
-},
-
-{
-name:"الصيدلية المركزية",
-phone:"0528861731",
-address:"Amicale des fonctionnaires"
-}
+{name:"صيدلية الفتح",address:"Lot El Fath 01 أمام مسجد الفتح",phone:"0528863442"},
+{name:"صيدلية أبوزيد",address:"طريق أكلو قرب مستشفى الحسن الأول",phone:"0528601500"},
+{name:"صيدلية السوق",address:"طريق تفراوت الحي الصناعي",phone:"0528860200"},
+{name:"صيدلية إراك",address:"شارع 30 تجزئة إراك",phone:"0528600346"},
+{name:"صيدلية طريق كلميم",address:"شارع بئر أنزاران طريق كلميم",phone:"0528866778"},
+{name:"صيدلية الأمل",address:"شارع 30 أفراك قرب مقهى فينيسيا",phone:"0528861729"},
+{name:"صيدلية أسفار ن إسفارن",address:"شارع الحسن الثاني تجزئة الحرية",phone:"0528862434"},
+{name:"صيدلية أوروبا",address:"ودادية الموظفين أمام حديقة مولاي عبد الله",phone:"0528863545"},
+{name:"صيدلية الوداديات",address:"أمام مسجد السنة",phone:"0528861550"},
+{name:"صيدلية الشريف الإدريسي",address:"خارج باب أكلو قرب عيادة جاسم",phone:"0528602525"},
+{name:"صيدلية شارع 30",address:"شارع 30 قرب ثانوية الوحدة",phone:"0528864433"},
+{name:"صيدلية أفراك",address:"شارع دريس الحارتي قرب مسجد القدس",phone:"0528600788"},
+{name:"صيدلية بن عمر",address:"شارع 30 أفراك مقابل BMCE",phone:"0528600814"},
+{name:"صيدلية الصحة",address:"حي المسيرة بين حمام أسكتي وشارع الوفاق",phone:"0528602526"},
+{name:"صيدلية إكرام",address:"عمارة نصر طريق أكلو",phone:"0707150651"},
+{name:"صيدلية الشعب",address:"قرب المحكمة الابتدائية شارع علال بن عبد الله",phone:"0528601755"},
+{name:"صيدلية الجنوب",address:"قرب ودادية الموظفين",phone:"0528601400"},
+{name:"صيدلية الجديدة",address:"شارع سيدي عبد الرحمان",phone:"0528862742"},
+{name:"صيدلية نصيري",address:"رقم 1 شارع محمد الخامس اليوسفية",phone:"0528600721"},
+{name:"صيدلية بلحاج",address:"سوق سي بلعيد",phone:"0528601782"},
+{name:"صيدلية التكوين",address:"طريق تفراوت قرب التكوين المهني",phone:"0525255060"},
+{name:"صيدلية حي النخيل",address:"الشارع الرئيسي حي النخيل",phone:"0528861949"},
+{name:"صيدلية المحطة",address:"طريق تفراوت قرب سوق الخميس",phone:"0667134940"},
+{name:"صيدلية إيليغ",address:"السعيدية قرب مدرسة يعقوبي",phone:"0528860289"},
+{name:"صيدلية ابن سينا",address:"طريق كلميم أمام محطة شيل",phone:"0528860285"},
+{name:"صيدلية الكبرى",address:"شارع محمد الخامس اليوسفية",phone:"0528600814"},
+{name:"صيدلية فوق الواد",address:"فوق الواد اتجاه تاركا قرب مدرسة 18 نونبر",phone:"0528601061"},
+{name:"صيدلية المختار السوسي",address:"أمام مستشفى حمان الفتوكي",phone:"0528863565"},
+{name:"صيدلية الشفاء",address:"الطريق القديم لأكلو قرب مدرسة الصفا",phone:"0707735712"},
+{name:"صيدلية رحمة الله",address:"تجزئة نهضة 2 أمام مؤسسة رواد النهضة",phone:"0528866233"},
+{name:"الصيدلية الإقليمية",address:"طريق أكادير",phone:"0528600775"},
+{name:"صيدلية المستقبل",address:"تجزئة العبور العين الزرقة قرب خزان المياه",phone:"0528602111"},
+{name:"صيدلية المستشفى",address:"طريق أكلو أمام مستشفى الحسن الأول",phone:"0528863285"},
+{name:"صيدلية الأطلس",address:"تقاطع طريق إفني وشارع 30",phone:"0528601534"},
+{name:"صيدلية سهل سوس",address:"ساحة المشوار",phone:"0528861741"},
+{name:"صيدلية طريق إفني",address:"طريق إفني قرب محطة أفريقيا",phone:"0528601296"},
+{name:"الصيدلية المركزية",address:"رقم 186 بلوك B ودادية الموظفين",phone:"0528861731"},
+{name:"صيدلية المرس",address:"شارع المرس أمام المركز الصحي",phone:"0528860728"}
 
 ]
 
-function today(){
-
-const day=new Date().getDate()
-
-return pharmacies[day%pharmacies.length]
-
-}
-
 function showToday(){
 
-const p=today()
+let day=new Date().getDate()
+let p=pharmacies[day % pharmacies.length]
 
-document.getElementById("today").innerHTML=
-
-`<h2>🌙 صيدلية المداومة اليوم</h2>
-
-<h3>${p.name}</h3>
-
+document.getElementById("todayPharmacy").innerHTML=
+`
+<b>${p.name}</b>
 <p>${p.address}</p>
-
-<button class="call" onclick="location.href='tel:${p.phone}'">📞 اتصال</button>`
+`
 
 }
 
 function showList(data){
 
-const list=document.getElementById("list")
+let list=document.getElementById("pharmacyList")
 
 list.innerHTML=""
 
 data.forEach(p=>{
 
-list.innerHTML+=
+list.innerHTML+=`
 
-`<div class="card">
+<li>
 
-<h3>${p.name}</h3>
+<div class="name">${p.name}</div>
+<div class="address">${p.address}</div>
 
-<p>${p.address}</p>
+<div class="buttons">
 
-<button class="call" onclick="location.href='tel:${p.phone}'">📞 اتصال</button>
+<button class="call" onclick="window.location.href='tel:${p.phone}'">📞 اتصال</button>
 
-<button class="map" onclick="window.open('https://maps.google.com/?q=${p.name}+Tiznit')">🗺️ خريطة</button>
+<button class="map" onclick="window.open('https://maps.google.com/?q=${p.address} Tiznit')">🗺️ خريطة</button>
 
-</div>`
+</div>
+
+</li>
+
+`
 
 })
 
@@ -252,14 +87,12 @@ list.innerHTML+=
 
 document.getElementById("search").addEventListener("input",function(){
 
-const value=this.value
+let value=this.value
+let filtered=pharmacies.filter(p=>p.name.includes(value))
 
-const result=pharmacies.filter(p=>p.name.includes(value))
-
-showList(result)
+showList(filtered)
 
 })
 
 showToday()
-
 showList(pharmacies)
