@@ -1,55 +1,67 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>صيدليات تيزنيت</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صيدلية الحراسة - تيزنيت</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome للأيقونات -->
+    <link href="https://cdnjs.cloudflare.com" rel="stylesheet">
+    <style>
+        body { background-color: #0f172a; font-family: system-ui, -apple-system, sans-serif; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
 </head>
+<body class="min-h-screen flex flex-col items-center p-4 text-white">
 
-<body>
+    <!-- الهيدر -->
+    <header class="w-full max-w-md text-center my-10">
+        <div class="inline-block p-3 bg-emerald-500 rounded-2xl mb-4 shadow-lg shadow-emerald-500/20">
+            <i class="fas fa-hand-holding-medical text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight">صيدلية الحراسة</h1>
+        <p class="text-emerald-400 font-medium text-lg">مدينة تيزنيت</p>
+        <p id="current-date" class="text-slate-400 mt-2 text-sm italic"></p>
+    </header>
 
-<header>
+    <!-- البطاقة الرئيسية -->
+    <main class="w-full max-w-md glass-card rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+        <!-- زينة خلفية -->
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        
+        <div class="text-center relative z-10">
+            <span class="px-4 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold uppercase tracking-wider">مفتوحة الآن</span>
+            <h2 id="pharmacy-name" class="text-3xl font-bold mt-4 mb-2 text-white">جاري البحث...</h2>
+            <p class="text-slate-400 text-sm flex items-center justify-center gap-2">
+                <i class="fas fa-map-marker-alt text-emerald-500"></i> تيزنيت، المغرب
+            </p>
+        </div>
 
-<h1><i class="fa-solid fa-pills"></i> صيدليات تيزنيت</h1>
-<p>دليل صيدليات مدينة تيزنيت</p>
+        <!-- أزرار التفاعل -->
+        <div class="grid grid-cols-2 gap-4 mt-10 relative z-10">
+            <a id="btn-call" href="#" class="flex flex-col items-center justify-center bg-slate-800 hover:bg-emerald-600 p-5 rounded-3xl transition-all duration-300 group">
+                <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-2 group-hover:bg-white/20">
+                    <i class="fas fa-phone-alt text-xl"></i>
+                </div>
+                <span class="font-bold">اتصال</span>
+            </a>
+            
+            <a id="btn-map" href="#" target="_blank" class="flex flex-col items-center justify-center bg-slate-800 hover:bg-blue-600 p-5 rounded-3xl transition-all duration-300 group">
+                <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-2 group-hover:bg-white/20">
+                    <i class="fas fa-route text-xl"></i>
+                </div>
+                <span class="font-bold">الموقع</span>
+            </a>
+        </div>
+    </main>
 
-</header>
+    <!-- تذييل الصفحة -->
+    <footer class="mt-auto py-8 text-center">
+        <p class="text-slate-500 text-xs">مصدر البيانات: مندوبية الصحة بتيزنيت</p>
+        <p class="text-slate-600 text-[10px] mt-1">تطوير: Pharm-Tiznit Team</p>
+    </footer>
 
-<section class="today">
-
-<h2>🌙 صيدلية المداومة</h2>
-
-<div id="todayPharmacy"></div>
-
-</section>
-
-<section class="searchBox">
-
-<input id="search" type="text" placeholder="🔎 ابحث عن صيدلية">
-
-</section>
-
-<section class="list">
-
-<ul id="pharmacyList"></ul>
-
-</section>
-
-<footer>
-
-<p>© صيدليات تيزنيت</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
