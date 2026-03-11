@@ -2,17 +2,17 @@ body{
 
 font-family:Arial;
 margin:0;
-background:#f3f6fb;
+background:#f4f7fb;
 direction:rtl;
 
 }
 
 header{
 
-background:#0d6efd;
+background:#1e88e5;
 color:white;
+padding:20px;
 text-align:center;
-padding:25px;
 
 }
 
@@ -27,13 +27,13 @@ margin:20px;
 
 width:80%;
 padding:12px;
-border-radius:8px;
-border:1px solid #ccc;
 font-size:16px;
+border-radius:10px;
+border:1px solid #ccc;
 
 }
 
-.today{
+#today{
 
 background:#fff3cd;
 margin:20px;
@@ -43,7 +43,7 @@ text-align:center;
 
 }
 
-.grid{
+#list{
 
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -57,46 +57,30 @@ padding:20px;
 background:white;
 padding:15px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 
 }
 
-.card h3{
+button{
 
-margin:0;
-
-}
-
-.card p{
-
-color:#555;
-
-}
-
-.buttons{
-
-margin-top:10px;
-
-}
-
-.btn{
-
-padding:8px 12px;
+padding:8px 10px;
+border:none;
 border-radius:6px;
-text-decoration:none;
-color:white;
-font-size:14px;
+margin:5px;
+cursor:pointer;
 
 }
 
 .call{
 
-background:#198754;
+background:#2e7d32;
+color:white;
 
 }
 
 .map{
 
-background:#dc3545;
+background:#d32f2f;
+color:white;
 
 }
