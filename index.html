@@ -1,136 +1,137 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Pharmacie de Garde - Tiznit</title>
+<title>صيدليات الحراسة - تيزنيت</title>
 
 <style>
-
-body{
-margin:0;
-font-family:Arial;
+body {
+  margin: 0;
+  font-family: Arial;
+  direction: rtl;
 }
 
 /* الصفحات */
-
-.page{
-display:none;
-min-height:100vh;
-padding:20px;
-background-size:cover;
-background-position:center;
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
 }
 
-.active{
-display:block;
+.active {
+  display: block;
 }
 
 /* شاشة الترحيب */
-
-#splash{
-background-image:url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88");
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-color:white;
-font-size:28px;
+#splash {
+  background-image: url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 28px;
 }
 
 /* الصفحة الرئيسية */
-
-#home{
-background-image:url("https://images.unsplash.com/photo-1576602976047-174e57a47881");
+#home {
+  background-image: url("https://images.unsplash.com/photo-1576602976047-174e57a47881");
 }
 
 /* صفحة الصيدليات */
-
-#pharmacies{
-background:#f4f6f8;
+#pharmacies {
+  background: #f4f6f8;
+  color: #333;
 }
 
 /* header */
-
-.header{
-text-align:center;
-color:white;
-margin-bottom:20px;
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
 }
 
 /* card */
-
-.card{
-background:white;
-border-radius:15px;
-padding:20px;
-margin:15px auto;
-max-width:350px;
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 350px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* buttons */
-
-.buttons{
-display:flex;
-gap:10px;
-margin-top:10px;
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-button{
-flex:1;
-padding:10px;
-border:none;
-border-radius:8px;
-cursor:pointer;
+button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.call{
-background:#0aa36c;
-color:white;
+.call {
+  background: #0aa36c;
+  color: white;
 }
 
-.map{
-background:#2196f3;
-color:white;
+.map {
+  background: #2196f3;
+  color: white;
 }
 
 /* البحث */
-
-.search{
-text-align:center;
-margin:20px;
+.search {
+  text-align: center;
+  margin: 20px;
+  position: relative;
 }
 
-.search input{
-padding:10px;
-width:80%;
-border-radius:8px;
-border:1px solid #ccc;
+.search input {
+  padding: 10px 35px 10px 10px;
+  width: 80%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search::after {
+  content: "🔍";
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none;
 }
 
 /* navigation */
-
-.nav{
-position:fixed;
-bottom:0;
-width:100%;
-display:flex;
-background:#0aa36c;
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  background: #0aa36c;
 }
 
-.nav button{
-flex:1;
-background:none;
-color:white;
-font-size:16px;
-padding:15px;
-border:none;
+.nav button {
+  flex: 1;
+  background: none;
+  color: white;
+  font-size: 16px;
+  padding: 15px;
+  border: none;
 }
-
 </style>
 
 </head>
@@ -138,193 +139,115 @@ border:none;
 <body>
 
 <!-- شاشة الترحيب -->
-
 <div id="splash" class="page active">
-
-<h1>💊 Pharmacie de Garde</h1>
-
-<p>Tiznit</p>
-
-<p>Bienvenue</p>
-
+  <h1>💊 صيدليات الحراسة</h1>
+  <p>تيزنيت</p>
+  <p>مرحبا بكم</p>
 </div>
-
 
 <!-- الصفحة الرئيسية -->
-
 <div id="home" class="page">
+  <div class="header">
+    <h1>صيدليات الحراسة</h1>
+    <p id="date"></p>
+  </div>
 
-<div class="header">
+  <!-- صيدلية الحراسة الليلية -->
+  <div class="card">
+    <h2>🌙 صيدلية الحراسة الليلة</h2>
+    <p><b>الاسم:</b> صيدلية المركزية</p>
+    <p><b>العنوان:</b> شارع محمد الخامس</p>
+    <p><b>الهاتف:</b> 0528000000</p>
+    <div class="buttons">
+      <a href="tel:0528000000"><button class="call">📞 اتصال</button></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=صيدلية+المركزية+تيزنيت" target="_blank">
+        <button class="map">🗺️ خريطة</button>
+      </a>
+    </div>
+  </div>
 
-<h1>صيدليات الحراسة</h1>
-
-<p id="date"></p>
-
+  <!-- صيدلية نهاية الأسبوع -->
+  <div class="card">
+    <h2>☀️ صيدلية الحراسة نهاية الأسبوع</h2>
+    <p><b>الاسم:</b> صيدلية الأطلس</p>
+    <p><b>العنوان:</b> الحي الإداري</p>
+    <p><b>الهاتف:</b> 0528111111</p>
+    <div class="buttons">
+      <a href="tel:0528111111"><button class="call">📞 اتصال</button></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=صيدلية+الأطلس+تيزنيت" target="_blank">
+        <button class="map">🗺️ خريطة</button>
+      </a>
+    </div>
+  </div>
 </div>
-
-
-<div class="card">
-
-<h2>🌙 صيدلية الحراسة الليلة</h2>
-
-<p><b>الاسم:</b> Pharmacie Centrale</p>
-
-<p><b>العنوان:</b> Avenue Mohammed V</p>
-
-<p><b>الهاتف:</b> 0528000000</p>
-
-<div class="buttons">
-
-<a href="tel:0528000000">
-<button class="call">📞 اتصال</button>
-</a>
-
-<a href="https://maps.google.com/?q=Pharmacie+Centrale+Tiznit" target="_blank">
-<button class="map">🗺️ خريطة</button>
-</a>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>☀️ صيدلية الحراسة نهاية الأسبوع</h2>
-
-<p><b>الاسم:</b> Pharmacie Atlas</p>
-
-<p><b>العنوان:</b> Quartier Administratif</p>
-
-<p><b>الهاتف:</b> 0528111111</p>
-
-<div class="buttons">
-
-<a href="tel:0528111111">
-<button class="call">📞 اتصال</button>
-</a>
-
-<a href="https://maps.google.com/?q=Pharmacie+Atlas+Tiznit" target="_blank">
-<button class="map">🗺️ خريطة</button>
-</a>
-
-</div>
-
-</div>
-
-</div>
-
 
 <!-- صفحة جميع الصيدليات -->
-
 <div id="pharmacies" class="page">
+  <h1 style="text-align:center">جميع صيدليات تيزنيت</h1>
 
-<h1 style="text-align:center">جميع الصيدليات</h1>
+  <div class="search">
+    <input id="search" placeholder="ابحث عن صيدلية...">
+  </div>
 
-<div class="search">
-
-<input id="search" placeholder="ابحث عن صيدلية...">
-
+  <div class="card">
+    <h3>صيدلية المركزية</h3>
+    <p>شارع محمد الخامس</p>
+  </div>
+  <div class="card">
+    <h3>صيدلية الأطلس</h3>
+    <p>الحي الإداري</p>
+  </div>
+  <div class="card">
+    <h3>صيدلية ابن سينا</h3>
+    <p>وسط المدينة</p>
+  </div>
+  <div class="card">
+    <h3>صيدلية الأمل</h3>
+    <p>طريق أكادير</p>
+  </div>
+  <div class="card">
+    <h3>صيدلية السلام</h3>
+    <p>حي المسيرة</p>
+  </div>
 </div>
 
-
-<div class="card">
-<h3>Pharmacie Centrale</h3>
-<p>Avenue Mohammed V</p>
-</div>
-
-<div class="card">
-<h3>Pharmacie Atlas</h3>
-<p>Quartier Administratif</p>
-</div>
-
-<div class="card">
-<h3>Pharmacie Ibn Sina</h3>
-<p>Centre Ville</p>
-</div>
-
-<div class="card">
-<h3>Pharmacie Al Amal</h3>
-<p>Route Agadir</p>
-</div>
-
-<div class="card">
-<h3>Pharmacie Salam</h3>
-<p>Quartier Al Massira</p>
-</div>
-
-</div>
-
-
-<!-- navigation -->
-
+<!-- شريط التنقل -->
 <div class="nav">
-
-<button onclick="showPage('home')">🏠 الرئيسية</button>
-
-<button onclick="showPage('pharmacies')">💊 الصيدليات</button>
-
+  <button onclick="showPage('home')">🏠 الرئيسية</button>
+  <button onclick="showPage('pharmacies')">💊 الصيدليات</button>
 </div>
-
 
 <script>
-
-/* شاشة الترحيب */
-
+/* شاشة الترحيب لمدة 4 ثواني */
 setTimeout(function(){
-
-showPage("home");
-
+  showPage("home");
 },4000);
 
-
 /* تغيير الصفحات */
-
 function showPage(page){
-
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-
-document.getElementById(page).classList.add("active");
-
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+  document.getElementById(page).classList.add("active");
 }
-
 
 /* التاريخ */
-
 let today = new Date();
+document.getElementById("date").innerHTML = today.toDateString();
 
-document.getElementById("date").innerHTML =
-today.toDateString();
-
-
-/* البحث */
-
+/* البحث في الصيدليات */
 let search = document.getElementById("search");
-
 if(search){
-
-search.addEventListener("keyup",function(){
-
-let filter = search.value.toLowerCase();
-
-let cards = document.querySelectorAll("#pharmacies .card");
-
-cards.forEach(card=>{
-
-let text = card.innerText.toLowerCase();
-
-card.style.display = text.includes(filter) ? "block" : "none";
-
-});
-
-});
-
+  search.addEventListener("keyup",function(){
+    let filter = search.value.toLowerCase();
+    let cards = document.querySelectorAll("#pharmacies .card");
+    cards.forEach(card=>{
+      let text = card.innerText.toLowerCase();
+      card.style.display = text.includes(filter) ? "block" : "none";
+    });
+  });
 }
-
 </script>
 
 </body>
-
 </html>
