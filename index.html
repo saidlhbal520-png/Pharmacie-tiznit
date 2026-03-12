@@ -3,65 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صيدلية الحراسة - تيزنيت</title>
-    <!-- Tailwind CSS للتصميم -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome للأيقونات -->
-    <link href="https://cdnjs.cloudflare.com" rel="stylesheet">
+    <title>دليل صيدليات تيزنيت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        body { background-color: #0f172a; font-family: system-ui, -apple-system, sans-serif; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        :root { --primary: #2c3e50; --accent: #27ae60; --bg: #f4f7f6; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); }
+        
+        /* شاشة الترحيب */
+        #splash-screen {
+            position: fixed; width: 100%; height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; z-index: 9999; transition: opacity 0.8s ease;
+        }
+        
+        /* الشاشة الرئيسية */
+        #main-content { display: none; padding: 20px; }
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .highlight { border-right: 5px solid var(--accent); background: #e8f5e9; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+        .contact-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .btn-call { color: white; background: var(--accent); padding: 5px 15px; border-radius: 20px; text-decoration: none; }
+        iframe { width: 100%; height: 300px; border-radius: 15px; border: none; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4 text-white">
+<body>
 
-    <!-- الهيدر -->
-    <header class="w-full max-w-md text-center my-10">
-        <div class="inline-block p-3 bg-emerald-500 rounded-2xl mb-4 shadow-lg shadow-emerald-500/20">
-            <i class="fas fa-hand-holding-medical text-3xl"></i>
-        </div>
-        <h1 class="text-3xl font-extrabold tracking-tight">صيدلية الحراسة</h1>
-        <p class="text-emerald-400 font-medium text-lg">مدينة تيزنيت</p>
-        <p id="current-date" class="text-slate-400 mt-2 text-sm italic"></p>
-    </header>
+    <!-- شاشة الترحيب -->
+    <div id="splash-screen">
+        <i class="fas fa-hand-holding-medical fa-4x" style="margin-bottom: 20px;"></i>
+        <h1>مرحباً بك في تطبيق دليل صيدليات تيزنيت</h1>
+        <p>جاري تحميل البيانات...</p>
+    </div>
 
-    <!-- البطاقة الرئيسية -->
-    <main class="w-full max-w-md glass-card rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
-        <!-- زينة خلفية -->
-        <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
-        
-        <div class="text-center relative z-10">
-            <span class="px-4 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold uppercase tracking-wider">مفتوحة الآن</span>
-            <h2 id="pharmacy-name" class="text-3xl font-bold mt-4 mb-2 text-white">جاري البحث...</h2>
-            <p class="text-slate-400 text-sm flex items-center justify-center gap-2">
-                <i class="fas fa-map-marker-alt text-emerald-500"></i> تيزنيت، المغرب
-            </p>
-        </div>
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: var(--primary);">دليل تيزنيت الصحي</h1>
+        </header>
 
-        <!-- أزرار التفاعل -->
-        <div class="grid grid-cols-2 gap-4 mt-10 relative z-10">
-            <a id="btn-call" href="#" class="flex flex-col items-center justify-center bg-slate-800 hover:bg-emerald-600 p-5 rounded-3xl transition-all duration-300 group">
-                <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-2 group-hover:bg-white/20">
-                    <i class="fas fa-phone-alt text-xl"></i>
-                </div>
-                <span class="font-bold">اتصال</span>
-            </a>
+        <!-- صيدليات الحراسة -->
+        <section>
+            <div class="card highlight">
+                <h3><i class="fas fa-moon"></i> صيدلية الحراسة الليلية (الليلة)</h3>
+                <p><strong>صيدلية المختار السوسي</strong> - 10 شارع المستشفى</p>
+                <a href="tel:+212528863565" class="btn-call">اتصال <i class="fas fa-phone"></i></a>
+            </div>
+            <div class="card highlight">
+                <h3><i class="fas fa-calendar-alt"></i> مداومة نهاية الأسبوع</h3>
+                <p><strong>صيدلية المستشفى</strong> - 750 شارع الحسن الثاني</p>
+            </div>
+        </section>
+
+        <!-- أرقام الطوارئ -->
+        <section>
+            <h2>أرقام الطوارئ بتيزنيت</h2>
+            <div class="card">
+                <div class="contact-item"><span>الوقاية المدنية</span> <strong>150</strong></div>
+                <div class="contact-item"><span>الشرطة</span> <strong>190</strong></div>
+                <div class="contact-item"><span>الدرك الملكي</span> <strong>177</strong></div>
+                <div class="contact-item"><span>الإسعاف (تيزنيت)</span> <strong>0528864444</strong></div>
+            </div>
+        </section>
+
+        <!-- أطباء المدينة -->
+        <section>
+            <h2>أطباء وصيدليات المدينة</h2>
+            <div class="card">
+                <p>يمكنك العثور على القائمة الكاملة للأطباء والصيدليات هنا:</p>
+                <div class="contact-item"><span>صيدلية النخيل</span> 0528601507</div>
+                <div class="contact-item"><span>د. رشيد سلامي (عام)</span> 0528863131</div>
+                <div class="contact-item"><span>طبيب المنزل 24/24</span> 0708215388</div>
+            </div>
+        </section>
+
+        <!-- خريطة تفاعلية -->
+        <section>
+            <h2>خريطة الصيدليات</h2>
+            <div class="card">
+                <iframe src="https://www.google.com"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // كود التحكم في شاشة الترحيب
+        setTimeout(function() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-content');
             
-            <a id="btn-map" href="#" target="_blank" class="flex flex-col items-center justify-center bg-slate-800 hover:bg-blue-600 p-5 rounded-3xl transition-all duration-300 group">
-                <div class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-2 group-hover:bg-white/20">
-                    <i class="fas fa-route text-xl"></i>
-                </div>
-                <span class="font-bold">الموقع</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- تذييل الصفحة -->
-    <footer class="mt-auto py-8 text-center">
-        <p class="text-slate-500 text-xs">مصدر البيانات: مندوبية الصحة بتيزنيت</p>
-        <p class="text-slate-600 text-[10px] mt-1">تطوير: Pharm-Tiznit Team</p>
-    </footer>
-
-    <script src="script.js"></script>
+            splash.style.opacity = '0'; // التلاشي
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.style.display = 'block';
+            }, 800); // إخفاء تماماً بعد انتهاء التلاشي
+        }, 3000); // الانتظار 3 ثواني
+    </script>
 </body>
 </html>
