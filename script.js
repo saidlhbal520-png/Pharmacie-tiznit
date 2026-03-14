@@ -1,44 +1,42 @@
-// رابط Google Sheet (يجب أن ينتهي بـ output=csv)
-const SHEET_URL = "ضع_رابط_CSV_الخاص_بك_هنا";
+// 1. قاعدة بيانات الصيدليات في تيزنيت
+const pharmacies = {
+    "ph1": { name: "صيدلية أفراك", phone: "0528123456", map: "https://goo.gl..." },
+    "ph2": { name: "صيدلية العين", phone: "0528654321", map: "https://goo.gl..." },
+    "ph3": { name: "صيدلية المسيرة", phone: "0528000000", map: "https://goo.gl..." }
+};
 
-async function updatePharmacy() {
-    const nameElement = document.getElementById('pharmacy-name');
-    const dateElement = document.getElementById('current-date');
+// 2. جدول الحراسة (أضف التواريخ هنا يدوياً)
+const schedule = {
+    "2026-03-14": "ph1",
+    "2026-03-15": "ph2",
+    "2026-03-16": "ph3"
+};
+
+function initApp() {
+    const nameEl = document.getElementById('pharmacy-name');
+    const dateEl = document.getElementById('current-date');
     const btnCall = document.getElementById('btn-call');
     const btnMap = document.getElementById('btn-map');
 
-    // 1. عرض التاريخ الحالي
-    const today = new Date();
-    const options = { weekday: 'long', day: 'numeric', month: 'long' };
-    dateElement.innerText = today.toLocaleDateString('ar-MA', options);
+    // تحديد تاريخ اليوم بصيغة YYYY-MM-DD
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+    
+    // عرض التاريخ بالعربية
+    dateEl.innerText = now.toLocaleDateString('ar-MA', { weekday: 'long', day: 'numeric', month: 'long' });
 
-    // صيغة التاريخ للبحث في الجدول (YYYY-MM-DD)
-    const searchDate = today.toISOString().split('T')[0];
+    // جلب الصيدلية بناءً على التاريخ
+    const phId = schedule[todayStr];
+    const pharmacy = pharmacies[phId];
 
-    try {
-        // 2. جلب البيانات من جوجل شيت
-        const response = await fetch(SHEET_URL);
-        const csvData = await response.text();
-        
-        // 3. تحليل البيانات (تحويل CSV إلى مصفوفة)
-        const rows = csvData.split('\n').map(row => row.split(','));
-        
-        // البحث عن صف يحتوي على تاريخ اليوم (العمود الأول A)
-        const todayEntry = rows.find(row => row[0].trim() === searchDate);
-
-        if (todayEntry) {
-            nameElement.innerText = todayEntry[1]; // اسم الصيدلية (العمود B)
-            btnCall.href = `tel:${todayEntry[2].trim()}`; // الهاتف (العمود C)
-            btnMap.href = todayEntry[3].trim(); // الرابط (العمود D)
-        } else {
-            nameElement.innerText = "لا توجد حراسة مسجلة اليوم";
-            nameElement.classList.add('text-red-400');
-        }
-    } catch (error) {
-        nameElement.innerText = "خطأ في الاتصال بالبيانات";
-        console.error("Error:", error);
+    if (pharmacy) {
+        nameEl.innerText = pharmacy.name;
+        btnCall.href = `tel:${pharmacy.phone}`;
+        btnMap.href = pharmacy.map;
+    } else {
+        nameEl.innerText = "لم يتم تحديد صيدلية";
+        nameEl.classList.add('text-red-400');
     }
 }
 
-// التشغيل عند تحميل الصفحة
-window.onload = updatePharmacy;
+window.onload = initApp;
