@@ -3,52 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل صيدليات المداومة - تيزنيt</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>دليل صيدليات تيزنيت - Tiznit Pharmacy</title>
     <link href="https://cdnjs.cloudflare.com" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; font-family: sans-serif; color: white; }
-        .glass-card { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        :root { --primary: #00a884; --secondary: #2c3e50; --accent: #e74c3c; --bg: #f4f7f6; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { margin: 0; background: var(--bg); color: #333; }
+
+        /* 1. الشاشة الترحيبية */
+        #splash {
+            position: fixed; width: 100%; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 10000; color: white; transition: 0.8s ease-in-out;
+        }
+        .logo-img { width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--primary); margin-bottom: 20px; object-fit: cover; background: white; }
+
+        /* 2. الهيدر (أزرار الحراسة) */
+        header { 
+            display: flex; justify-content: space-between; padding: 15px; 
+            background: white; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
+        }
+        .btn-garde { padding: 12px 18px; border-radius: 12px; border: none; cursor: pointer; color: white; font-weight: bold; transition: 0.3s; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .night-btn { background: var(--secondary); } /* أعلى يميناً */
+        .weekend-btn { background: var(--primary); } /* أعلى يساراً */
+
+        /* 3. منطقة البحث والخريطة */
+        .main-hero { padding: 30px 20px; text-align: center; background: white; }
+        .search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
+        .search-box { width: 100%; padding: 16px 50px 16px 20px; border-radius: 30px; border: 2px solid #eee; font-size: 1.1rem; outline: none; transition: 0.3s; text-align: right; }
+        .search-box:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,168,132,0.1); }
+        .search-wrapper i { position: absolute; right: 20px; top: 18px; color: var(--primary); font-size: 1.2rem; }
+        
+        .map-section { margin-top: 20px; }
+        .btn-full-map { background: white; border: 2px solid var(--primary); color: var(--primary); padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s; }
+        .btn-full-map:hover { background: var(--primary); color: white; }
+
+        /* 4. كروت الصيدليات */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 20px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; border-bottom: 4px solid transparent; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-bottom-color: var(--primary); }
+        .card h3 { margin: 0 0 5px 0; color: var(--secondary); font-size: 1.3rem; }
+        .card h4 { margin: 0 0 15px 0; color: #888; font-size: 0.95rem; font-weight: normal; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+        .info-row { display: flex; align-items: start; gap: 12px; margin-bottom: 12px; font-size: 0.95rem; color: #555; }
+        .info-row i { color: var(--primary); margin-top: 4px; width: 15px; }
+        
+        .card-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .action-btn { flex: 1; padding: 10px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; font-size: 0.9rem; transition: 0.2s; }
+        .call-btn { background: #e8f5e9; color: var(--primary); border: 1px solid var(--primary); }
+        .gps-btn { background: var(--primary); color: white; }
+
+        /* موبايل */
+        @media (max-width: 600px) {
+            .btn-garde { font-size: 0.75rem; padding: 10px; }
+            .logo-img { width: 100px; height: 100px; }
+            h1 { font-size: 1.5rem; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4">
+<body>
 
-    <!-- العنوان -->
-    <header class="text-center my-12">
-        <div class="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30">
-            <i class="fas fa-plus-medical text-3xl"></i>
-        </div>
-        <h1 class="text-3xl font-bold">صيدلية الحراسة</h1>
-        <p class="text-emerald-400">تيزنيت - Tiznit</p>
-        <p id="current-date" class="text-slate-400 mt-2 text-sm italic"></p>
+    <!-- الشاشة الترحيبية -->
+    <div id="splash">
+        <!-- سيتم استبدال الصورة بشعارك عند توفره -->
+        <img src="https://cdn-icons-png.flaticon.com" class="logo-img" alt="Logo">
+        <h1 style="margin:10px 0;">مرحباً بك في دليل صيدليات تيزنيت</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Tiznit Pharmacy Guide</p>
+    </div>
+
+    <!-- الهيدر -->
+    <header>
+        <button class="btn-garde night-btn" onclick="filterGarde('night')">
+            <i class="fas fa-moon"></i> صيدلية الحراسة الليلية
+        </button>
+        <button class="btn-garde weekend-btn" onclick="filterGarde('weekend')">
+            صيدلية حراسة نهاية الأسبوع <i class="fas fa-calendar-check"></i>
+        </button>
     </header>
 
-    <!-- بطاقة الصيدلية -->
-    <main class="w-full max-w-md glass-card rounded-[2rem] p-8 shadow-2xl">
-        <div class="text-center mb-8">
-            <span class="bg-emerald-500/20 text-emerald-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">الحراسة الليلة</span>
-            <h2 id="pharmacy-name" class="text-3xl font-bold mt-4 text-white">...</h2>
-            <p class="text-slate-400 mt-2 flex items-center justify-center gap-2">
-                <i class="fas fa-location-dot"></i> تيزنيت، المغرب
-            </p>
+    <!-- محرك البحث والخريطة -->
+    <div class="main-hero">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" class="search-box" placeholder="ابحث باسم الصيدلية (عربي/فرنسي) أو العنوان..." onkeyup="search()">
+            <i class="fas fa-search"></i>
         </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <a id="btn-call" href="#" class="flex flex-col items-center bg-slate-800 p-5 rounded-3xl hover:bg-emerald-600 transition-all">
-                <i class="fas fa-phone-alt text-xl mb-2"></i>
-                <span class="font-bold">اتصال</span>
-            </a>
-            <a id="btn-map" href="#" target="_blank" class="flex flex-col items-center bg-slate-800 p-5 rounded-3xl hover:bg-blue-600 transition-all">
-                <i class="fas fa-route text-xl mb-2"></i>
-                <span class="font-bold">الموقع</span>
-            </a>
+        
+        <div class="map-section">
+            <button class="btn-full-map" onclick="window.open('https://www.google.com')">
+                <i class="fas fa-map-marked-alt"></i> خريطة صيدليات تيزنيت التفاعلية
+            </button>
         </div>
-    </main>
+    </div>
 
-    <footer class="mt-auto py-8 text-slate-500 text-xs text-center">
-        تحديث يدوي - تأكد دائماً من الاتصال قبل التنقل
-    </footer>
+    <!-- القائمة -->
+    <div class="grid" id="pharmacyList"></div>
 
-    <script src="script.js"></script>
+    <script>
+        const pharmacies = [
+            { ar: "صيدلية الفتح", fr: "Pharmacie El Fath", addr: "رقم 29 تجزئة الفتح 01، أمام مسجد الفتح", tel: "0528863442", night: true },
+            { ar: "صيدلية أبوزيد", fr: "Pharmacie Abouzaid", addr: "طريق أكلو، بالقرب من مستشفى الحسن الأول", tel: "0528601500", weekend: true },
+            { ar: "صيدلية السوق", fr: "Pharmacie Souk", addr: "طريق تفراوت، الحي الصناعي", tel: "0528860200" },
+            { ar: "صيدلية إراك", fr: "Pharmacie Erac", addr: "شارع 30، تجزئة إراك، تيزنيت", tel: "0528600346" },
+            { ar: "صيدلية طريق كلميم", fr: "Pharmacie Route de Guelmim", addr: "شارع بئر أنزاران، طريق كلميم", tel: "0528866778" },
+            { ar: "صيدلية الأمل", fr: "Pharmacie Al Amal", addr: "شارع 30 أفراك، بالقرب من مقهى فينيسيا", tel: "0528861729" },
+            { ar: "صيدلية أسفار ن إسفارن", fr: "Pharmacie Assafar N Issafarne", addr: "شارع الحسن الثاني رقم 6، تجزئة الحرية", tel: "0528862434" },
+            { ar: "صيدلية أوروبا", fr: "Pharmacie Europe", addr: "ودادية الموظفين، أمام حديقة مولاي عبد الله", tel: "0528863545" },
+            { ar: "صيدلية الوداديات", fr: "Pharmacie des Amicales", addr: "أمام مسجد السنة", tel: "0528861550" },
+            { ar: "صيدلية الشريف الإدريسي", fr: "Pharmacie Charif Idrissi", addr: "خارج باب أكلو، قرب عيادة جاسم", tel: "0528602525" },
+            { ar: "صيدلية شارع 30", fr: "Pharmacie Avenue 30", addr: "شارع 30، بالقرب من ثانوية الوحدة", tel: "0528864433" },
+            { ar: "صيدلية أفراك", fr: "Pharmacie Afrag", addr: "شارع دريس الحارتي، قرب مسجد القدس", tel: "0528600788" },
+            { ar: "صيدلية بن عمر", fr: "Pharmacie Ben Omar", addr: "شارع 30 أفراك، مقابل BMCE", tel: "0528600814" },
+            { ar: "صيدلية الصحة", fr: "Pharmacie La Santé", addr: "حي المسيرة، بين حمام أسكتي وشارع الوفاق", tel: "0528602526" },
+            { ar: "صيدلية إكرام", fr: "Pharmacie Ikram", addr: "عمارة نصر، طريق أكلو", tel: "0707150651" },
+            { ar: "صيدلية الشعب", fr: "Pharmacie du PEUPLE", addr: "قرب المحكمة الابتدائية، ودادية الموظفين", tel: "0528601755" },
+            { ar: "صيدلية الجنوب", fr: "Pharmacie du Sud", addr: "بالقرب من جمعية الموظفين", tel: "0528601400" },
+            { ar: "صيدلية الجديدة", fr: "Pharmacie Nouvelle", addr: "شارع سيدي عبد الرحمان", tel: "0528862742" },
+            { ar: "صيدلية نصيري", fr: "Pharmacie Nassiri", addr: "رقم 1 شارع محمد الخامس، اليوسفية", tel: "0528600721" },
+            { ar: "صيدلية بلحاج", fr: "Pharmacie Bel Haj", addr: "سوق سي بلعيد", tel: "0528601782" },
+            { ar: "صيدلية التكوين", fr: "Pharmacie Attakwine", addr: "طريق تفراوت، قرب التكوين المهني", tel: "0525255060" },
+            { ar: "صيدلية حي النخيل", fr: "Pharmacie Hay Nakhil", addr: "الشارع الرئيسي النخيل، تجزئة النخيل", tel: "0528861949" },
+            { ar: "صيدلية المحطة (Gare)", fr: "Pharmacie La Gare", addr: "طريق تفراوت، قرب سوق الخميس", tel: "0667134940" },
+            { ar: "صيدلية إيليغ", fr: "Pharmacie Iligh", addr: "السعيدية، تجزئة المستقبل رقم 19", tel: "0528860289" },
+            { ar: "صيدلية ابن سينا", fr: "Pharmacie Ibn Sina", addr: "طريق كلميم، أمام محطة شيل", tel: "0528860285" },
+            { ar: "صيدلية الكبرى", fr: "Pharmacie La Grande", addr: "شارع محمد الخامس، اليوسفية", tel: "0528600814" },
+            { ar: "صيدلية فوق الواد", fr: "Pharmacie Fouk El Wad", addr: "شارع سيدي عبد الرحمان، قرب مدرسة 18 نونبر", tel: "0528601061" },
+            { ar: "صيدلية المختار السوسي", fr: "Pharmacie Mokhtar Soussi", addr: "أمام مستشفى حمان الفتوكي", tel: "0528863565" },
+            { ar: "صيدلية نرجو الشفاء", fr: "Pharmacie narjou chifaa", addr: "طريق أكلو القديم، قرب مدرسة الصفا", tel: "0707735712" },
+            { ar: "صيدلية رحمة الله", fr: "Pharmacie Rahmatallah", addr: "تجزئة نهضة 2، أمام رواد النهضة", tel: "0528866233" },
+            { ar: "صيدلية المستقبل", fr: "Pharmacie Almostaqbal", addr: "تجزئة العبور، العين الزرقة، قرب خزان المياه", tel: "0528602111" },
+            { ar: "صيدلية المستشفى", fr: "Pharmacie l'Hôpital", addr: "طريق أكلو، أمام مستشفى الحسن الأول", tel: "0528863285" },
+            { ar: "صيدلية الأطلس", fr: "Pharmacie El Atlas", addr: "تقاطع طريق إفني وشارع 30", tel: "0528601534" },
+            { ar: "صيدلية سهل سوس", fr: "Pharmacie sahl Souss", addr: "ساحة المشوار رقم 65", tel: "0528861741" },
+            { ar: "صيدلية طريق إفني", fr: "Pharmacie Route Ifni", addr: "طريق إفني، قرب محطة أفريقيا", tel: "0528601296" },
+            { ar: "صيدلية المركزية", fr: "PHARMACIE CENTRALE", addr: "رقم 186، بلوك B، جمعية الموظفين", tel: "0528861731" },
+            { ar: "صيدلية المرس", fr: "Pharmacie Al Mers", addr: "شارع المرس إد الضلحى، أمام المركز الصحي", tel: "0528860745" }
+        ];
+
+        // إخفاء الشاشة الترحيبية بعد 3 ثواني
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('splash').style.opacity = '0';
+                setTimeout(() => document.getElementById('splash').style.display='none', 800);
+            }, 3000);
+            render(pharmacies);
+        };
+
+        // دالة عرض الصيدليات
+        function render(arr) {
+            const list = document.getElementById('pharmacyList');
+            list.innerHTML = arr.map(p => `
+                <div class="card">
+                    <h3>${p.ar}</h3>
+                    <h4>${p.fr}</h4>
+                    <div class="info-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${p.addr}</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-phone-alt"></i>
+                        <span dir="ltr">${p.tel}</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="tel:${p.tel}" class="action-btn call-btn"><i class="fas fa-phone"></i> اتصل</a>
+                        <a href="https://www.google.com{p.fr}+Tiznit" target="_blank" class="action-btn gps-btn"><i class="fas fa-location-arrow"></i> الخريطة</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // البحث
+        function search() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = pharmacies.filter(p => 
+                p.ar.includes(term) || 
+                p.fr.toLowerCase().includes(term) || 
+                p.addr.includes(term)
+            );
+            render(filtered);
+        }
+
+        // فلترة الحراسة
+        function filterGarde(type) {
+            const filtered = pharmacies.filter(p => type === 'night' ? p.night : p.weekend);
+            if(filtered.length > 0) {
+                render(filtered);
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+            } else {
+                alert("سيتم تحديث جدول الحراسة لهذا الأسبوع قريباً من طرف السلطات المحلية.");
+            }
+        }
+    </script>
 </body>
 </html>
