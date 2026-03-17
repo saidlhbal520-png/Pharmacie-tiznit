@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Splash */
+#splash {
+  background: url('splash.jpg') no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.6);
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+}
+
+/* Main */
+#main {
+  background: url('main.jpg') no-repeat center/cover;
+  min-height: 100vh;
+  padding: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Header */
+header {
+  text-align: center;
+  color: white;
+}
+
+/* Buttons */
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.services button {
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.services button:hover {
+  background: #0077cc;
+  color: white;
+}
+
+/* Sections */
+.section {
+  background: rgba(255,255,255,0.9);
+  padding: 15px;
+  border-radius: 15px;
+}
