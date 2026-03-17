@@ -7,49 +7,59 @@
 </head>
 <body>
 
-<!-- شاشة الاستقبال -->
+<!-- Splash -->
 <div id="splash">
   <div class="overlay">
     <h1>مرحبا بك في دليل صيدليات تيزنيت</h1>
   </div>
 </div>
 
-<!-- الشاشة الرئيسية -->
+<!-- Main App -->
 <div id="main" class="hidden">
 
   <header>
-    <h2>🏥 دليل صيدليات تيزنيت</h2>
+    <h2>🏥 دليل تيزنيت الصحي</h2>
   </header>
 
-  <div class="container">
+  <!-- أزرار الخدمات -->
+  <div class="services">
 
-    <div class="card">
-      <h3>💊 صيدلية الحراسة الليلة</h3>
+    <button onclick="showSection('night')">💊 صيدلية الحراسة</button>
+    <button onclick="showSection('weekend')">🕒 مداومة نهاية الأسبوع</button>
+    <button onclick="showSection('pharmacies')">📋 الصيدليات</button>
+    <button onclick="showSection('doctors')">👨‍⚕️ الأطباء</button>
+
+  </div>
+
+  <!-- المحتوى -->
+  <div class="content">
+
+    <div id="night" class="section">
+      <h3>💊 صيدلية الحراسة</h3>
       <p>صيدلية السلام</p>
       <p>📞 0600000000</p>
       <a href="https://www.google.com/maps?q=Tiznit" target="_blank">📍 عرض في الخريطة</a>
     </div>
 
-    <div class="card">
-      <h3>🕒 صيدلية نهاية الأسبوع</h3>
+    <div id="weekend" class="section hidden">
+      <h3>🕒 مداومة نهاية الأسبوع</h3>
       <p>صيدلية الأمل</p>
       <p>📞 0611111111</p>
-      <a href="https://www.google.com/maps?q=Tiznit" target="_blank">📍 عرض في الخريطة</a>
     </div>
 
-    <div class="card">
-      <h3>📋 جميع الصيدليات</h3>
+    <div id="pharmacies" class="section hidden">
+      <h3>📋 الصيدليات</h3>
       <ul>
         <li>صيدلية النور - 0622222222</li>
         <li>صيدلية الشفاء - 0633333333</li>
       </ul>
     </div>
 
-    <div class="card">
+    <div id="doctors" class="section hidden">
       <h3>👨‍⚕️ الأطباء</h3>
       <ul>
         <li>د. أحمد - طب عام</li>
-        <li>د. فاطمة - طب الأسنان</li>
+        <li>د. فاطمة - أسنان</li>
       </ul>
     </div>
 
