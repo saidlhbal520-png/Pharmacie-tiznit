@@ -1,178 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tiznit Pharma Connect</title>
-    <link href="https://cdnjs.cloudflare.com" rel="stylesheet">
-    <style>
-        :root {
-            --eu-blue: #0a84ff; /* أزرق تقني أوروبي */
-            --eu-green: #30d158; /* أخضر صحي */
-            --bg-gray: #f2f2f7;
-            --text-main: #1c1c1e;
-        }
-
-        body {
-            background-color: var(--bg-gray);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0; padding-bottom: 90px; color: var(--text-main);
-        }
-
-        /* Splash Screen Premium */
-        #splash {
-            position: fixed; inset: 0; background: white;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 10000; transition: opacity 0.6s ease;
-        }
-        .eu-loader {
-            width: 80px; height: 80px; border-radius: 20px;
-            background: linear-gradient(135deg, var(--eu-blue), #5e5ce6);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 20px rgba(10, 132, 255, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
-
-        /* Header Navigation */
-        .premium-header {
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(15px);
-            padding: 20px; position: sticky; top: 0; z-index: 900;
-            border-bottom: 1px solid #d1d1d6;
-        }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .city-tag { background: #e5e5ea; padding: 5px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 600; }
-
-        /* Search European Style */
-        .search-container { position: relative; }
-        .search-input {
-            width: 100%; border: none; background: #e5e5ea; padding: 12px 45px 12px 15px;
-            border-radius: 12px; font-size: 1rem; outline: none; box-sizing: border-box;
-        }
-        .search-container i { position: absolute; right: 15px; top: 12px; color: #8e8e93; }
-
-        /* Modern Pharmacy Cards */
-        .container { padding: 15px; }
-        .card {
-            background: white; border-radius: 18px; padding: 18px; margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #f2f2f7;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card.is-guard { border: 2px solid var(--eu-blue); background: #f0f7ff; }
-        
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 5px; }
-        .status-open { background: var(--eu-green); box-shadow: 0 0 8px var(--eu-green); }
-
-        .pharm-title { font-size: 1.15rem; font-weight: 700; margin: 0; color: #000; }
-        .pharm-subtitle { font-size: 0.85rem; color: #8e8e93; margin: 4px 0 12px; }
-
-        .info-item { display: flex; align-items: center; gap: 10px; color: #3a3a3c; font-size: 0.9rem; margin-bottom: 8px; }
-        .info-item i { color: var(--eu-blue); width: 18px; }
-
-        /* Bottom Action Bar */
-        .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
-        .btn {
-            border-radius: 12px; border: none; padding: 12px; font-weight: 600;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            cursor: pointer; transition: 0.2s; font-size: 0.9rem;
-        }
-        .btn-call { background: #f2f2f7; color: var(--eu-blue); }
-        .btn-map { background: var(--eu-blue); color: white; }
-
-        /* Floating Nav Bar */
-        .bottom-nav {
-            position: fixed; bottom: 20px; left: 20px; right: 20px;
-            background: rgba(28, 28, 30, 0.9); backdrop-filter: blur(10px);
-            border-radius: 25px; padding: 15px; display: flex;
-            justify-content: space-around; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .nav-link { color: #8e8e93; text-decoration: none; font-size: 0.75rem; text-align: center; }
-        .nav-link.active { color: white; }
-        .nav-link i { font-size: 1.2rem; display: block; margin-bottom: 4px; }
-    </style>
+  <meta charset="UTF-8">
+  <title>دليل صيدليات تيزنيت</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- شاشة الاستقبال -->
 <div id="splash">
-    <div class="eu-loader"><i class="fas fa-plus" style="color: white; font-size: 40px;"></i></div>
-    <h2 style="margin-top: 20px; letter-spacing: 1px;">TIZNIT PHARMA</h2>
-    <p style="color: #8e8e93;">بكل احترافية، صحتكم تهمنا</p>
+  <div class="overlay">
+    <h1>مرحبا بك في دليل صيدليات تيزنيت</h1>
+  </div>
 </div>
 
-<div class="premium-header">
-    <div class="top-bar">
-        <span style="font-weight: 800; font-size: 1.3rem;">تيزنيت <span style="color:var(--eu-blue)">فارما</span></span>
-        <span class="city-tag"><i class="fas fa-location-dot"></i> تيزنيت، المغرب</span>
+<!-- الشاشة الرئيسية -->
+<div id="main" class="hidden">
+
+  <header>
+    <h2>🏥 دليل صيدليات تيزنيت</h2>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>💊 صيدلية الحراسة الليلة</h3>
+      <p>صيدلية السلام</p>
+      <p>📞 0600000000</p>
+      <a href="https://www.google.com/maps?q=Tiznit" target="_blank">📍 عرض في الخريطة</a>
     </div>
-    <div class="search-container">
-        <i class="fas fa-magnifying-glass"></i>
-        <input type="text" id="q" class="search-input" placeholder="البحث حسب الاسم أو الحي..." onkeyup="search()">
+
+    <div class="card">
+      <h3>🕒 صيدلية نهاية الأسبوع</h3>
+      <p>صيدلية الأمل</p>
+      <p>📞 0611111111</p>
+      <a href="https://www.google.com/maps?q=Tiznit" target="_blank">📍 عرض في الخريطة</a>
     </div>
+
+    <div class="card">
+      <h3>📋 جميع الصيدليات</h3>
+      <ul>
+        <li>صيدلية النور - 0622222222</li>
+        <li>صيدلية الشفاء - 0633333333</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>👨‍⚕️ الأطباء</h3>
+      <ul>
+        <li>د. أحمد - طب عام</li>
+        <li>د. فاطمة - طب الأسنان</li>
+      </ul>
+    </div>
+
+  </div>
+
 </div>
 
-<div class="container" id="pharmList">
-    <!-- المحتوى يظهر هنا -->
-</div>
-
-<nav class="bottom-nav">
-    <a class="nav-link active" onclick="filter('all')"><i class="fas fa-house"></i>الرئيسية</a>
-    <a class="nav-link" onclick="filter('guard')"><i class="fas fa-shield-heart"></i>الحراسة</a>
-    <a class="nav-link" onclick="window.open('https://www.google.com')"><i class="fas fa-map"></i>الخريطة</a>
-</nav>
-
-<script>
-    const data = [
-        {ar: "صيدلية الفتح", fr: "Pharmacie El Fath", addr: "رقم 29 تجزئة الفتح 01", tel: "0528863442", guard: true},
-        {ar: "صيدلية أبوزيد", fr: "Pharmacie Abouzaid", addr: "طريق أكلو، قرب المستشفى", tel: "0528601500", guard: false},
-        {ar: "صيدلية إكرام", fr: "Pharmacie Ikram", addr: "عمارة نصر، طريق أكلو", tel: "0707150651", guard: true},
-        {ar: "صيدلية الأمل", fr: "Pharmacie Al Amal", addr: "شارع 30 أفراك", tel: "0528861729", guard: false},
-        {ar: "صيدلية رحمة الله", fr: "Pharmacie Rahmatallah", addr: "تجزئة نهضة 2", tel: "0528866233", guard: true}
-    ];
-
-    function render(items) {
-        const list = document.getElementById('pharmList');
-        list.innerHTML = items.map(p => `
-            <div class="card ${p.guard ? 'is-guard' : ''}">
-                <div class="card-header">
-                    <div>
-                        <h3 class="pharm-title">${p.ar}</h3>
-                        <span class="pharm-subtitle">${p.fr}</span>
-                    </div>
-                    ${p.guard ? '<span style="color:var(--eu-blue); font-size:0.7rem; font-weight:700;">● نوبة الحراسة</span>' : ''}
-                </div>
-                <div class="info-item"><i class="fas fa-location-arrow"></i> ${p.addr}</div>
-                <div class="info-item"><i class="fas fa-phone"></i> ${p.tel}</div>
-                <div class="info-item">
-                    <span class="status-dot status-open"></span>
-                    <span style="color:var(--eu-green); font-weight:600; font-size:0.8rem;">مفتوح حالياً</span>
-                </div>
-                <div class="actions">
-                    <button class="btn btn-call" onclick="location.href='tel:${p.tel}'"><i class="fas fa-phone"></i> اتصال</button>
-                    <button class="btn btn-map" onclick="window.open('https://www.google.com{p.fr}+Tiznit')"><i class="fas fa-route"></i> المسار</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function search() {
-        const term = document.getElementById('q').value.toLowerCase();
-        render(data.filter(p => p.ar.includes(term) || p.fr.toLowerCase().includes(term)));
-    }
-
-    function filter(type) {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        render(type === 'guard' ? data.filter(d => d.guard) : data);
-    }
-
-    window.onload = () => {
-        render(data);
-        setTimeout(() => {
-            document.getElementById('splash').style.opacity = '0';
-            setTimeout(() => document.getElementById('splash').remove(), 600);
-        }, 2500);
-    };
-</script>
+<script src="script.js"></script>
 </body>
 </html>
