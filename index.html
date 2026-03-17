@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>دليل صيدليات تيزنيت</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
 <body>
 
@@ -14,55 +18,51 @@
   </div>
 </div>
 
-<!-- Main App -->
-<div id="main" class="hidden">
+<!-- App -->
+<div id="app" class="hidden">
 
-  <header>
-    <h2>🏥 دليل تيزنيت الصحي</h2>
-  </header>
+  <!-- الصفحات -->
+  <div id="home" class="screen active">
+    <h2>🏥 دليل تيزنيت</h2>
 
-  <!-- أزرار الخدمات -->
-  <div class="services">
-
-    <button onclick="showSection('night')">💊 صيدلية الحراسة</button>
-    <button onclick="showSection('weekend')">🕒 مداومة نهاية الأسبوع</button>
-    <button onclick="showSection('pharmacies')">📋 الصيدليات</button>
-    <button onclick="showSection('doctors')">👨‍⚕️ الأطباء</button>
-
+    <div class="grid">
+      <div onclick="openScreen('night')" class="card">💊<p>الحراسة</p></div>
+      <div onclick="openScreen('weekend')" class="card">🕒<p>المداومة</p></div>
+      <div onclick="openScreen('map')" class="card">📍<p>الخريطة</p></div>
+      <div onclick="openScreen('doctors')" class="card">👨‍⚕️<p>الأطباء</p></div>
+    </div>
   </div>
 
-  <!-- المحتوى -->
-  <div class="content">
+  <div id="night" class="screen">
+    <h3>💊 صيدلية الحراسة</h3>
+    <p>صيدلية السلام</p>
+    <p>📞 0600000000</p>
+  </div>
 
-    <div id="night" class="section">
-      <h3>💊 صيدلية الحراسة</h3>
-      <p>صيدلية السلام</p>
-      <p>📞 0600000000</p>
-      <a href="https://www.google.com/maps?q=Tiznit" target="_blank">📍 عرض في الخريطة</a>
-    </div>
+  <div id="weekend" class="screen">
+    <h3>🕒 مداومة نهاية الأسبوع</h3>
+    <p>صيدلية الأمل</p>
+  </div>
 
-    <div id="weekend" class="section hidden">
-      <h3>🕒 مداومة نهاية الأسبوع</h3>
-      <p>صيدلية الأمل</p>
-      <p>📞 0611111111</p>
-    </div>
+  <div id="doctors" class="screen">
+    <h3>👨‍⚕️ الأطباء</h3>
+    <ul>
+      <li>د. أحمد</li>
+      <li>د. فاطمة</li>
+    </ul>
+  </div>
 
-    <div id="pharmacies" class="section hidden">
-      <h3>📋 الصيدليات</h3>
-      <ul>
-        <li>صيدلية النور - 0622222222</li>
-        <li>صيدلية الشفاء - 0633333333</li>
-      </ul>
-    </div>
+  <div id="map" class="screen">
+    <h3>📍 الخريطة</h3>
+    <div id="mapContainer"></div>
+  </div>
 
-    <div id="doctors" class="section hidden">
-      <h3>👨‍⚕️ الأطباء</h3>
-      <ul>
-        <li>د. أحمد - طب عام</li>
-        <li>د. فاطمة - أسنان</li>
-      </ul>
-    </div>
-
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button onclick="openScreen('home')">🏠</button>
+    <button onclick="openScreen('night')">💊</button>
+    <button onclick="openScreen('map')">📍</button>
+    <button onclick="openScreen('doctors')">👨‍⚕️</button>
   </div>
 
 </div>
