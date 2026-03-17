@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>دليل صيدليات تيزنيت</title>
-
   <link rel="stylesheet" href="style.css">
-
-  <!-- Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
 <body>
 
@@ -18,51 +14,42 @@
   </div>
 </div>
 
-<!-- App -->
-<div id="app" class="hidden">
+<!-- Main -->
+<div id="main" class="hidden">
 
-  <!-- الصفحات -->
-  <div id="home" class="screen active">
-    <h2>🏥 دليل تيزنيت</h2>
+  <div class="header">
+    <h2>🏥 دليل تيزنيت الصحي</h2>
+  </div>
 
-    <div class="grid">
-      <div onclick="openScreen('night')" class="card">💊<p>الحراسة</p></div>
-      <div onclick="openScreen('weekend')" class="card">🕒<p>المداومة</p></div>
-      <div onclick="openScreen('map')" class="card">📍<p>الخريطة</p></div>
-      <div onclick="openScreen('doctors')" class="card">👨‍⚕️<p>الأطباء</p></div>
+  <!-- القائمة -->
+  <div id="menu">
+
+    <div class="card" onclick="show('night')">
+      💊
+      <p>صيدلية الحراسة</p>
     </div>
+
+    <div class="card" onclick="show('weekend')">
+      🕒
+      <p>مداومة نهاية الأسبوع</p>
+    </div>
+
+    <div class="card" onclick="show('pharmacies')">
+      📋
+      <p>الصيدليات</p>
+    </div>
+
+    <div class="card" onclick="show('doctors')">
+      👨‍⚕️
+      <p>الأطباء</p>
+    </div>
+
   </div>
 
-  <div id="night" class="screen">
-    <h3>💊 صيدلية الحراسة</h3>
-    <p>صيدلية السلام</p>
-    <p>📞 0600000000</p>
-  </div>
-
-  <div id="weekend" class="screen">
-    <h3>🕒 مداومة نهاية الأسبوع</h3>
-    <p>صيدلية الأمل</p>
-  </div>
-
-  <div id="doctors" class="screen">
-    <h3>👨‍⚕️ الأطباء</h3>
-    <ul>
-      <li>د. أحمد</li>
-      <li>د. فاطمة</li>
-    </ul>
-  </div>
-
-  <div id="map" class="screen">
-    <h3>📍 الخريطة</h3>
-    <div id="mapContainer"></div>
-  </div>
-
-  <!-- Bottom Nav -->
-  <div class="bottom-nav">
-    <button onclick="openScreen('home')">🏠</button>
-    <button onclick="openScreen('night')">💊</button>
-    <button onclick="openScreen('map')">📍</button>
-    <button onclick="openScreen('doctors')">👨‍⚕️</button>
+  <!-- المحتوى -->
+  <div id="content" class="hidden">
+    <button onclick="back()">⬅ رجوع</button>
+    <div id="text"></div>
   </div>
 
 </div>
