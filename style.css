@@ -1,12 +1,11 @@
 body {
   margin: 0;
   font-family: Arial;
-  color: white;
 }
 
 /* Splash */
 #splash {
-  background: url('splash.jpg') center/cover;
+  background: url('splash.jpg') center/cover no-repeat;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,76 +13,88 @@ body {
 }
 
 .overlay {
-  background: rgba(0,0,0,0.7);
-  padding: 30px;
-  border-radius: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
 }
 
-/* App */
-#app {
-  background: url('main.jpg') center/cover;
-  height: 100vh;
-  position: relative;
+/* Main */
+#main {
+  background: url('main.jpg') center/cover no-repeat;
+  min-height: 100vh;
+  padding: 15px;
 }
 
 .hidden {
   display: none;
 }
 
-/* Screens */
-.screen {
-  display: none;
-  padding: 20px;
+/* Header */
+.header {
   text-align: center;
+  color: white;
+  margin-bottom: 20px;
 }
 
-.screen.active {
-  display: block;
-}
-
-/* Grid */
-.grid {
+/* Cards */
+#menu {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-top: 30px;
 }
 
 .card {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(15px);
-  padding: 30px;
-  border-radius: 20px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.card:hover {
-  background: rgba(0,123,255,0.8);
-}
-
-/* Map */
-#mapContainer {
-  width: 100%;
-  height: 400px;
+  background: rgba(255,255,255,0.75);
+  padding: 20px;
   border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
 }
 
-/* Bottom nav */
-.bottom-nav {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
+.card:active {
+  transform: scale(0.95);
 }
 
-.bottom-nav button {
-  background: none;
+/* Content */
+#content {
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
   border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* أزرار */
+.call {
+  background: #28a745;
   color: white;
-  font-size: 20px;
+}
+
+.map {
+  background: #007bff;
+  color: white;
+}
+
+/* أنيميشن */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
